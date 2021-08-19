@@ -40,7 +40,9 @@ async def say(ctx, *, text):
 async def stab(ctx, person : discord.Member):
   await ctx.send("Yo" + " " + person.mention + " " + "has been stabbed")
   
-
+@client.command()
+async def source(ctx):
+  await ctx.send("https://github.com/Phoneguytech75/PhoneguyBot")
 
 
 

@@ -8,4 +8,4 @@ A discord bot I have created
 -say -- makes the bot say something
 -stab -- stabs the mentioned person
 -source -- sends a link to this repo
-
+-

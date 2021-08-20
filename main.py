@@ -68,7 +68,7 @@ async def update(ctx):
     await ctx.send(embed=embed)
 
 @client.command()
-async def avatar(ctx, member : discord.Member)
+async def avatar(ctx, member : discord.Member):
    await ctx.send("{}".format(member.avatar_url))
 
 

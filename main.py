@@ -34,7 +34,8 @@ async def kick(ctx, member : discord.Member):
 
 @client.command()
 async def say(ctx, *, text):
-  await ctx.send(text)
+ await ctx.channel.purge(limit=1)
+ await ctx.send(text)
 
 @client.command()
 async def stab(ctx, person : discord.Member):

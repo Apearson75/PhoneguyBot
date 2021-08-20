@@ -52,6 +52,12 @@ async def server(ctx):
 async def vote(ctx):
   await ctx.send("https://top.gg/bot/852619132138160148")
 
+@client.command()
+async def commands(ctx):
+  with open('commands.txt', 'r') as cmds:
+   await ctx.send(cmds.read())
+
+
 
 
 

@@ -48,6 +48,10 @@ async def source(ctx):
 async def server(ctx):
   await ctx.send("https://discord.gg/vFrsNYxz3G")
 
+@client.command()
+async def vote(ctx):
+  await ctx.send("https://top.gg/bot/852619132138160148")
+
 
 
 

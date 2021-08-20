@@ -10,4 +10,5 @@ A discord bot I have created
 -stab -- stabs the mentioned person
 -source -- sends a link to this repo
 -server -- sends the link to the idk discord server
+-vote -- goes to the top.gg page of my bot
 ```

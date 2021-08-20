@@ -75,7 +75,7 @@ async def avatar(ctx, member : discord.Member):
 @client.command()
 async def info(ctx, member : discord.Member):
   infoembed=discord.Embed(title=member.mention, color=0xc93bf5)
-  infoembed.add_field(name="Roles", value=member.Roles, inline=False)
+  infoembed.add_field(name="Roles", value=member.roles, inline=False)
 
 
 

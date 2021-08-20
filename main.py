@@ -69,7 +69,8 @@ async def update(ctx):
 
 @client.command()
 async def avatar(ctx, member : discord.Member):
-   await ctx.send("{}".format(member.avatar_url))
+  await ctx.channel.purge(limit=1) 
+  await ctx.send("{}".format(member.avatar_url))
 
 
 

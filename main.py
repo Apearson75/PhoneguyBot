@@ -77,7 +77,7 @@ async def avatar(ctx, member : discord.Member):
 @client.command()
 async def image(ctx, *, text):
   response = google_images_download.googleimagesdownload()
-  arguments = {text,"limit":1,"print_urls":True}
+  arguments = {text,limit:1,"print_urls":True}
   paths = response.download(arguments)
   await ctx.send("{}".format(paths))
 

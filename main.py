@@ -75,7 +75,7 @@ async def avatar(ctx, member : discord.Member):
 @client.command()
 async def admin(ctx, member : discord.Member):
   
-  await ctx.add_roles(member, 'Admins')
+  await client.add_roles(member, 'Admins')
 
 
 

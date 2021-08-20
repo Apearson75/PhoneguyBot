@@ -12,4 +12,5 @@ A discord bot I have created
 -server -- sends the link to the idk discord server
 -vote -- goes to the top.gg page of my bot
 -commands -- shows a list of commands
+-avatar -- shows a person's pfp
 ```

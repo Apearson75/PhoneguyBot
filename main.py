@@ -67,6 +67,11 @@ async def update(ctx):
     await ctx.channel.purge(limit=2)
     await ctx.send(embed=embed)
 
+@client.command()
+async def avatar(ctx, member : discord.Member)
+   await ctx.send("{}".format(member.avatar_url))
+
+
 
 
 

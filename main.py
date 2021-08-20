@@ -44,6 +44,11 @@ async def stab(ctx, person : discord.Member):
 async def source(ctx):
   await ctx.send("https://github.com/Phoneguytech75/PhoneguyBot")
 
+@client.command()
+async def server(ctx):
+  await ctx.send("https://discord.gg/vFrsNYxz3G")
+
+
 
 
 

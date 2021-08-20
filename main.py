@@ -22,7 +22,7 @@ async def count(ctx, number : int):
 
 @client.command()
 async def clear(ctx, number : int):
-    await ctx.channel.purge(limit=number)   
+    await ctx.channel.purge(limit=number+1)   
 
 @client.command()
 async def kick(ctx, member : discord.Member):
@@ -72,10 +72,7 @@ async def avatar(ctx, member : discord.Member):
   await ctx.channel.purge(limit=1) 
   await ctx.send("{}".format(member.avatar_url))
 
-@client.command()
-async def admin(ctx, member : discord.Member):
-  
-  await client.add_roles(member, 'Admins')
+
 
 
 

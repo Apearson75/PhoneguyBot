@@ -5,6 +5,7 @@ import discord.ext
 from discord.utils import get
 from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions,  CheckFailure, check
+from pypresence import Presence
 #^ basic imports for other features of discord.py and python ^
 
 client = discord.Client()
@@ -16,6 +17,17 @@ async def on_ready():
     print("bot online") #will print "bot online" in the console when the bot is online
     
     
+rpc = Presence()
+rpc.connect()
+rpc.update(state="Tell Hishaam to join the server", large_image="large-image")
+
+
+
+
+
+
+
+
 @client.command()
 async def count(ctx, number : int):
     await ctx.send(number +1)

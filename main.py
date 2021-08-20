@@ -59,6 +59,16 @@ async def commands(ctx):
     description=cmds.read(),color=0xc93bf5)
     await ctx.send(embed=embed)
 
+@client.command()
+async def update(ctx):
+  with open('commands.txt', 'r') as cmds:
+    await.channel.purge(limit=2)
+    embed=discord.Embed(title="Commands List",
+    description=cmds.read(),color=0xc93bf5)
+    await ctx.send(embed=embed)
+
+
+
 
 
   

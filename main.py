@@ -79,7 +79,7 @@ async def image(ctx, *, text):
   response = google_images_download.googleimagesdownload()
   arguments = {text, 1, True}
   paths = response.download(arguments)
-  await ctx.send("{}".format(paths))
+  await ctx.send(paths)
 
 
 

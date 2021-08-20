@@ -55,11 +55,13 @@ async def vote(ctx):
 @client.command()
 async def commands(ctx):
   with open('commands.txt', 'r') as cmds:
-   await ctx.send(cmds.read())
+  embed=discord.Embed(title="commands",
+  description=cmds.read(),color=0xc93bf5)
+  await ctx.send(embed=embed)
 
 
 
-
+  
 
 
 client.run(os.getenv("TOKEN")) #get your bot token and create a key named `TOKEN` to the secrets panel then paste your bot token as the value. 

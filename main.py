@@ -55,9 +55,9 @@ async def vote(ctx):
 @client.command()
 async def commands(ctx):
   with open('commands.txt', 'r') as cmds:
-  embed=discord.embed(title="commands",
-  description=cmds.read(),color=0xc93bf5)
-  await ctx.send(embed=embed)
+    embed=discord.embed(title="commands",
+    description=cmds.read(),color=0xc93bf5)
+    await ctx.send(embed=embed)
 
 
 

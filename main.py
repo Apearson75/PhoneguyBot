@@ -5,7 +5,6 @@ import discord.ext
 from discord.utils import get
 from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions,  CheckFailure, check
-from google_images_download import google_images_download
 #^ basic imports for other features of discord.py and python ^
 
 client = discord.Client()
@@ -74,12 +73,7 @@ async def avatar(ctx, member : discord.Member):
   await ctx.channel.purge(limit=1) 
   await ctx.send("{}".format(member.avatar_url))
 
-@client.command()
-async def image(ctx, *, text):
-  response = google_images_download.googleimagesdownload()
-  arguments = {text, 1, True}
-  paths = response.download(arguments)
-  await ctx.send(paths)
+
 
 
 

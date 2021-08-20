@@ -72,6 +72,11 @@ async def avatar(ctx, member : discord.Member):
   await ctx.channel.purge(limit=1) 
   await ctx.send("{}".format(member.avatar_url))
 
+@client.command()
+async def admin(ctx, member : discord.Member):
+  await member.add_roles('Admins')
+  await ctx.send('admin')
+
 
 
 

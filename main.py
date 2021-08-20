@@ -73,9 +73,9 @@ async def avatar(ctx, member : discord.Member):
   await ctx.send("{}".format(member.avatar_url))
 
 @client.command()
-async def admin(ctx, member : discord.Member):
-  await member.add_roles('Admins')
-  await ctx.send('admin')
+async def on_member_join(ctx, member : discord.Member):
+  role = discord.utils.get(member.server.roles, name= 'Admins')
+  await ctx.add_roles(member, role)
 
 
 

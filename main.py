@@ -31,6 +31,9 @@ async def clear(ctx, number : int):
 @slash.slash(name="slashclear", description="clears messages")
 async def slashclear(ctx, number : int):
     await ctx.channel.purge(limit=number+1)
+    await ctx.send("Deleted" + number + "messages")
+    time.sleep(2)
+    await ctx.channel.purge(limit=1)
 
 @client.command()
 async def kick(ctx, member : discord.Member):
@@ -49,7 +52,7 @@ async def say(ctx, *, text):
 async def slashsay(ctx, *, text):
   await ctx.channel.purge(limit=1)
   await ctx.send(text)
-
+  
 @client.command()
 async def stab(ctx, person : discord.Member):
   await ctx.send("Yo" + " " + person.mention + " " + "has been stabbed")

@@ -5,11 +5,14 @@ import discord.ext
 from discord.utils import get
 from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions,  CheckFailure, check
+from discord_slash import SlashCommand, SlashContext
 #^ basic imports for other features of discord.py and python ^
 
 client = discord.Client()
 
-client = commands.Bot(command_prefix = '-') #put your own prefix here
+client = commands.Bot(command_prefix = '-') #put 
+slash = SlashCommand(client, sync_commands=True)
+#your own prefix here
 
 @client.event
 async def on_ready():
@@ -21,7 +24,7 @@ async def count(ctx, number : int):
     await ctx.send(number +1)
 
 @client.command()
-async def clear(ctx, number : int):
+async def clear(ctx:SlashCommand, number : int):
     await ctx.channel.purge(limit=number+1)   
 
 @client.command()
@@ -33,7 +36,7 @@ async def kick(ctx, member : discord.Member):
         await ctx.send("bot does not have the kick members permission!")
 
 @client.command()
-async def say(ctx, *, text):
+async def say(ctx:SlashCommand, *, text):
  await ctx.channel.purge(limit=1)
  await ctx.send(text)
 

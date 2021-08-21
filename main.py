@@ -12,6 +12,7 @@ client = discord.Client()
 
 client = commands.Bot(command_prefix = '-') #put 
 slash = SlashCommand(client, sync_commands=True)
+guild_ids = [878561116630953985, 852619132138160148]
 #your own prefix here
 
 @client.event
@@ -26,6 +27,10 @@ async def count(ctx, number : int):
 @client.command()
 async def clear(ctx:SlashCommand, number : int):
     await ctx.channel.purge(limit=number+1)   
+
+@slash.slash(name="clear", description="clears messages", guild_ids=guild_ids)
+async def clear(ctx, number : int):
+    await ctx.channel.purge(limit=number+1)
 
 @client.command()
 async def kick(ctx, member : discord.Member):

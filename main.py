@@ -5,11 +5,15 @@ import discord.ext
 from discord.utils import get
 from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions,  CheckFailure, check
+from discord_slash import SlashCommand, SlashContext
 #^ basic imports for other features of discord.py and python ^
 
 client = discord.Client()
 
-client = commands.Bot(command_prefix = '-') #put your own prefix here
+client = commands.Bot(command_prefix = '-') #put 
+slash = SlashCommand(client, sync_commands=True)
+
+#your own prefix here
 
 @client.event
 async def on_ready():
@@ -24,6 +28,13 @@ async def count(ctx, number : int):
 async def clear(ctx, number : int):
     await ctx.channel.purge(limit=number+1)   
 
+@slash.slash(name="slashclear", description="clears messages")
+async def slashclear(ctx, number : int):
+    await ctx.channel.purge(limit=number+1)
+    await ctx.send("Deleted messages")
+    time.sleep(3)
+    await ctx.channel.purge(limit=1)
+
 @client.command()
 async def kick(ctx, member : discord.Member):
     try:
@@ -37,6 +48,11 @@ async def say(ctx, *, text):
  await ctx.channel.purge(limit=1)
  await ctx.send(text)
 
+@slash.slash(name="slashsay", description="say")
+async def slashsay(ctx, *, text):
+  await ctx.channel.purge(limit=1)
+  await ctx.send(text)
+  
 @client.command()
 async def stab(ctx, person : discord.Member):
   await ctx.send("Yo" + " " + person.mention + " " + "has been stabbed")

@@ -13,4 +13,5 @@ A discord bot I have created
 -vote -- goes to the top.gg page of my bot
 -commands -- shows a list of commands
 -avatar -- shows a person's pfp
+-toprole -- shows a person's top role
 ```

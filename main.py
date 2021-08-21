@@ -74,8 +74,10 @@ async def avatar(ctx, member : discord.Member):
   await ctx.send("{}".format(member.avatar_url))
 
 
-
-
+@client.command()
+async def toprole(ctx, member : discord.Member):
+  await ctx.send(member.top_role)
+  
 
 
 

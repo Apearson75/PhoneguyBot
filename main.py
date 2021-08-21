@@ -25,11 +25,11 @@ async def count(ctx, number : int):
     await ctx.send(number +1)
 
 @client.command()
-async def clear(ctx:SlashCommand, number : int):
+async def clear(ctx, number : int):
     await ctx.channel.purge(limit=number+1)   
 
 @slash.slash(name="clear", description="clears messages", guild_ids=guild_ids)
-async def clear(ctx, number : int):
+async def clear(ctx:SlashCommand, number : int):
     await ctx.channel.purge(limit=number+1)
 
 @client.command()

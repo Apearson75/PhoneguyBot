@@ -50,7 +50,6 @@ async def say(ctx, *, text):
 
 @slash.slash(name="slashsay", description="say")
 async def slashsay(ctx, *, text):
-  await ctx.channel.purge(limit=1)
   await ctx.send(text)
   
 @client.command()

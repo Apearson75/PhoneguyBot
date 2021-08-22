@@ -19,7 +19,11 @@ slash = SlashCommand(client, sync_commands=True)
 async def on_ready():
     print("bot online") #will print "bot online" in the console when the bot is online
     
-    
+@slash.slash(name="update1", description="this command is only for updating the bot")    
+async def slashupdate(ctx):
+   await ctx.send("Why did you use it")
+
+
 @client.command()
 async def count(ctx, number : int):
     await ctx.send(number +1)
@@ -80,6 +84,14 @@ async def commands(ctx):
     embed=discord.Embed(title="Commands List",
     description=cmds.read(),color=0xc93bf5)
     await ctx.send(embed=embed)
+
+@slash.slash(name="Commands", description="shows the list of Commands")
+async def slashcommands(ctx):
+  with open('commands.txt', 'r') as cmds:
+    embed=discord.Embed(title="Commands List",
+    description=cmds.read(),color=0xc93bf5)
+    await ctx.send(embed=embed)
+
 
 @client.command()
 async def update(ctx):

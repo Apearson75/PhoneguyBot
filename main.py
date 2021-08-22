@@ -142,7 +142,7 @@ async def anime(ctx, member : discord.Member):
         async with aniSession.get(f'https://nekobot.xyz/api/imagegen?type=animeface&image={member.avatar_url_as(format="png", size=1024)}') as aniImg:
          imageData = io.BytesIO(await aniImg.read())
          await aniSession.close()
-         await ctx.send(file=discord.File(imageData, 'anime.gif'))         
+         await ctx.send(file=discord.File(imageData, 'anime.png'))         
 
 client.run(os.getenv("TOKEN")) #get your bot token and create a key named `TOKEN` to the secrets panel then paste your bot token as the value. 
 #to keep your bot from shutting down use https://uptimerobot.com then create a https:// monitor and put the link to the website that appewars when you run this repl in the monitor and it will keep your bot alive by pinging the flask server

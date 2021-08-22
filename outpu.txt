@@ -1,0 +1,21 @@
+POS     CLUB                              PLAYED        GOAL DIFF     POINTS    
+1       Liverpool FC                      2             5             6
+2       Brighton & Hove Albion FC         2             3             6
+3       Everton FC                        2             2             4
+4       Brentford FC                      2             2             4
+5       Manchester City FC                2             4             3
+6       Manchester United FC              1             4             3
+7       Chelsea FC                        1             3             3
+8       West Ham United FC                1             2             3
+9       Aston Villa FC                    2             1             3
+10      Leicester City FC                 1             1             3
+11      Tottenham Hotspur FC              1             1             3
+12      Watford FC                        2            -1             3
+13      Crystal Palace FC                 2            -3             1
+14      Leeds United FC                   2            -4             1
+15      Wolverhampton Wanderers FC        1            -1             0
+16      Southampton FC                    1            -2             0
+17      Arsenal FC                        1            -2             0
+18      Burnley FC                        2            -3             0
+19      Newcastle United FC               2            -4             0
+20      Norwich City FC                   2            -8             0

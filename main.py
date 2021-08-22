@@ -134,7 +134,15 @@ async def wasted(ctx, member : discord.Member):
         async with wasSession.get(f'https://some-random-api.ml/canvas/wasted?avatar={member.avatar_url_as(format="png", size=1024)}') as wasImg:
          imageData = io.BytesIO(await wasImg.read())
          await wasSession.close()
-         await ctx.send(file=discord.File(imageData, 'wasted.gif'))        
+         await ctx.send(file=discord.File(imageData, 'wasted.gif'))    
+        
+@client.command()
+async def anime(ctx, member : discord.Member):
+  async with aiohttp.ClientSession() as aniSession:
+        async with aniSession.get(f'https://nekobot.xyz/api/imagegen?type=animeface&image={member.avatar_url_as(format="png", size=1024)}') as aniImg:
+         imageData = io.BytesIO(await aniImg.read())
+         await aniSession.close()
+         await ctx.send(file=discord.File(imageData, 'anime.gif'))         
 
 client.run(os.getenv("TOKEN")) #get your bot token and create a key named `TOKEN` to the secrets panel then paste your bot token as the value. 
 #to keep your bot from shutting down use https://uptimerobot.com then create a https:// monitor and put the link to the website that appewars when you run this repl in the monitor and it will keep your bot alive by pinging the flask server

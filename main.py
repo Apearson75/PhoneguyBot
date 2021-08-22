@@ -28,7 +28,7 @@ async def count(ctx, number : int):
 async def clear(ctx, number : int):
     await ctx.channel.purge(limit=number+1)   
 
-@slash.slash(name="slashclear", description="clears messages")
+@slash.slash(name="clear", description="clears messages")
 async def slashclear(ctx, number : int):
     await ctx.channel.purge(limit=number+1)
     await ctx.send("Deleted messages")
@@ -48,7 +48,7 @@ async def say(ctx, *, text):
  await ctx.channel.purge(limit=1)
  await ctx.send(text)
 
-@slash.slash(name="slashsay", description="say")
+@slash.slash(name="say", description="say")
 async def slashsay(ctx, *, text):
   await ctx.send(text)
   
@@ -59,6 +59,12 @@ async def stab(ctx, person : discord.Member):
 @client.command()
 async def source(ctx):
   await ctx.send("https://github.com/Phoneguytech75/PhoneguyBot")
+
+@slash.slash(name="Source", description="sends the source code link to the server")
+async def slashsource(ctx):
+  await ctx.send("https://github.com/Phoneguytech75/PhoneguyBot")
+
+
 
 @client.command()
 async def server(ctx):
@@ -94,8 +100,10 @@ async def toprole(ctx, member : discord.Member):
   await ctx.send(member.top_role)
   
 
-
-
+@client.command()
+async def football(ctx):
+  with open('output.txt', 'r') as fp:
+     await ctx.send(fp.read())
 
 
 

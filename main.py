@@ -24,7 +24,7 @@ async def on_ready():
     
 @slash.slash(name="update1", description="this command is only for updating the bot")    
 async def slashupdate(ctx):
-   await ctx.send("Why did you use it")
+   await ctx.send("Why did you use it?")
 
 
 @client.command()

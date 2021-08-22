@@ -128,6 +128,14 @@ async def trigger(ctx, member : discord.Member):
          await trigSession.close()
          await ctx.send(file=discord.File(imageData, 'triggered.gif'))
 
+@client.command()
+async def wasted(ctx, member : discord.Member):
+  async with aiohttp.ClientSession() as wasSession:
+        async with wasSession.get(f'https://some-random-api.ml/canvas/wasted?avatar={member.avatar_url_as(format="png", size=1024)}') as wasImg:
+         imageData = io.BytesIO(await wasImg.read())
+         await wasSession.close()
+         await ctx.send(file=discord.File(imageData, 'wasted.gif'))        
+
 client.run(os.getenv("TOKEN")) #get your bot token and create a key named `TOKEN` to the secrets panel then paste your bot token as the value. 
 #to keep your bot from shutting down use https://uptimerobot.com then create a https:// monitor and put the link to the website that appewars when you run this repl in the monitor and it will keep your bot alive by pinging the flask server
 #enjoy!

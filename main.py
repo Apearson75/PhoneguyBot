@@ -94,8 +94,10 @@ async def toprole(ctx, member : discord.Member):
   await ctx.send(member.top_role)
   
 
-
-
+@client.command()
+async def football(ctx):
+  with open('output.txt', 'r') as fp:
+     await ctx.send(fp.read())
 
 
 

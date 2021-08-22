@@ -1,6 +1,9 @@
 import discord
 import os
 import time
+import aiohttp
+import json
+import io
 import discord.ext
 from discord.utils import get
 from discord.ext import commands, tasks
@@ -117,13 +120,13 @@ async def football(ctx):
   with open('output.txt', 'r') as fp:
      await ctx.send(fp.read())
 
-
-
-
-
-
-  
-
+@client.command()
+async def trigger(ctx, member : discord.Member):
+  async with aiohttp.ClientSession() as trigSession:
+        async with trigSession.get(f'https://some-random-api.ml/canvas/triggered?avatar={member.avatar_url_as(format="png", size=1024)}') as trigImg:
+         imageData = io.BytesIO(await trigImg.read())
+         await trigSession.close()
+         await ctx.send(file=discord.File(imageData, 'triggered.gif'))
 
 client.run(os.getenv("TOKEN")) #get your bot token and create a key named `TOKEN` to the secrets panel then paste your bot token as the value. 
 #to keep your bot from shutting down use https://uptimerobot.com then create a https:// monitor and put the link to the website that appewars when you run this repl in the monitor and it will keep your bot alive by pinging the flask server

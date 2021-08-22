@@ -60,7 +60,7 @@ async def stab(ctx, person : discord.Member):
 async def source(ctx):
   await ctx.send("https://github.com/Phoneguytech75/PhoneguyBot")
 
-@slash.slash(name="GitHub Source Code", description="sends the source code link to the server")
+@slash.slash(name="Source", description="sends the source code link to the server")
 async def slashsource(ctx):
   await ctx.send("https://github.com/Phoneguytech75/PhoneguyBot")
 

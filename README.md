@@ -14,4 +14,7 @@ A discord bot I have created
 -commands -- shows a list of commands
 -avatar -- shows a person's pfp
 -toprole -- shows a person's top role
+-trigger -- trigger a person
+-wasted -- gta reference
+-simp -- call a person a simp
 ```

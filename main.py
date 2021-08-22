@@ -81,6 +81,14 @@ async def commands(ctx):
     description=cmds.read(),color=0xc93bf5)
     await ctx.send(embed=embed)
 
+@slash.slash(name="Commands", description="shows the list of Commands")
+async def slashcommands(ctx):
+  with open('commands.txt', 'r') as cmds:
+    embed=discord.Embed(title="Commands List",
+    description=cmds.read(),color=0xc93bf5)
+    await ctx.send(embed=embed)
+
+
 @client.command()
 async def update(ctx):
   with open('commands.txt', 'r') as cmds:

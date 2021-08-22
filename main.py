@@ -32,7 +32,7 @@ async def count(ctx, number : int):
 async def clear(ctx, number : int):
     await ctx.channel.purge(limit=number+1)   
 
-@slash.slash(name="sclear", description="clears messages")
+@slash.slash(name="clear", description="clears messages")
 async def slashclear(ctx, number : int):
     await ctx.channel.purge(limit=number+1)
     await ctx.send("Deleted messages")

@@ -123,7 +123,7 @@ async def football(ctx):
 @client.command()
 async def trigger(ctx, member : discord.Member):
   async with aiohttp.ClientSession() as trigSession:
-        async with trigSession.get(f'https://some-random-api.ml/canvas/horny?avatar={member.avatar_url_as(format="png", size=1024)}') as trigImg:
+        async with trigSession.get(f'https://some-random-api.ml/canvas/triggered?avatar={member.avatar_url_as(format="png", size=1024)}') as trigImg:
          imageData = io.BytesIO(await trigImg.read())
          await trigSession.close()
          await ctx.send(file=discord.File(imageData, 'triggered.gif'))

@@ -137,11 +137,11 @@ async def wasted(ctx, member : discord.Member):
          await ctx.send(file=discord.File(imageData, 'wasted.gif'))    
         
 @client.command()
-async def anime(ctx, member : discord.Member):
-  async with aiohttp.ClientSession() as aniSession:
-        async with aniSession.get(f'https://nekobot.xyz/api/imagegen?type=animeface&image={member.avatar_url_as(format="png", size=1024)}') as aniImg:
-         imageData = io.BytesIO(await aniImg.read())
-         await aniSession.close()
+async def simp(ctx, member : discord.Member):
+  async with aiohttp.ClientSession() as simpSession:
+        async with simpSession.get(f'https://some-random-api.ml/canvas/simpcard?avatar={member.avatar_url_as(format="png", size=1024)}') as simpImg:
+         imageData = io.BytesIO(await simpImg.read())
+         await simpSession.close()
          await ctx.send(file=discord.File(imageData, 'anime.png'))         
 
 client.run(os.getenv("TOKEN")) #get your bot token and create a key named `TOKEN` to the secrets panel then paste your bot token as the value. 

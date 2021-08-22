@@ -1,7 +1,7 @@
 import discord
 import os
 import time
-import aiohttp
+from aiohttp import request
 import json
 import io
 import discord.ext

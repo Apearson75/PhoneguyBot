@@ -2,5 +2,4 @@ discord
 discord.py
 discord-py-slash-command
 aiohttp
-json
-io
+

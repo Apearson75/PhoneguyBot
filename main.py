@@ -177,8 +177,8 @@ async def passed(ctx, member : discord.Member):
         
 @client.command()
 async def aniquote(ctx):
-    quote = ani_quote()
-    await ctx.send(quote)        
+    outputquote = ani_quote()
+    await ctx.send(outputquote)        
         
  
         

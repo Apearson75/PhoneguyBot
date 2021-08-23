@@ -140,7 +140,7 @@ async def slashtrigger(ctx, member : discord.Member):
 @client.command()
 async def wasted(ctx, member : discord.Member):
   async with aiohttp.ClientSession() as wasSession:
-        async with wasSession.get(f'https://some-random-api.ml/canvas/wasted?avatar={member.avatar_url_as(format="png", size=1024)}') as wasImg
+        async with wasSession.get(f'https://some-random-api.ml/canvas/wasted?avatar={member.avatar_url_as(format="png", size=1024)}') as wasImg:
          imageData = io.BytesIO(await wasImg.read())
          await wasSession.close()
          await ctx.send(file=discord.File(imageData, 'wasted.gif'))    

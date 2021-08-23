@@ -145,6 +145,8 @@ async def wasted(ctx, member : discord.Member):
          await wasSession.close()
          await ctx.send(file=discord.File(imageData, 'wasted.gif'))    
         
+
+        
 @client.command()
 async def simp(ctx, member : discord.Member):
   async with aiohttp.ClientSession() as simpSession:
@@ -152,6 +154,8 @@ async def simp(ctx, member : discord.Member):
          imageData = io.BytesIO(await simpImg.read())
          await simpSession.close()
          await ctx.send(file=discord.File(imageData, 'anime.png'))
+        
+
         
 @client.command()
 async def passed(ctx, member : discord.Member):

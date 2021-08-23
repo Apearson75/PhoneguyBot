@@ -27,6 +27,11 @@ def ani_quote():
     quote = json_data["sentence"]
     return(quote)
 
+def ani_wink():
+    response = requests.get("https://some-random-api.ml/animu/wink")
+    json_data = json.load(response.text)
+    img = json_data[f"link"]
+
 
 @client.event
 async def on_ready():
@@ -180,7 +185,10 @@ async def aniquote(ctx):
     outputquote = ani_quote()
     await ctx.send(outputquote)        
         
- 
+@client.command()
+async def aniwink(ctx):
+    outputwink = ani_wink()
+    await ctx.send(outputwink)
         
         
         

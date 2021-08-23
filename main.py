@@ -136,6 +136,7 @@ async def slashtrigger(ctx, member : discord.Member):
          await trigSession.close()
          await ctx.send(file=discord.File(imageData, 'triggered.gif'))      
         
+
 @client.command()
 async def wasted(ctx, member : discord.Member):
   async with aiohttp.ClientSession() as wasSession:

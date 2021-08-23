@@ -24,7 +24,7 @@ slash = SlashCommand(client, sync_commands=True)
 def ani_quote():
     response = requests.get("https://some-random-api.ml/animu/quote")
     json_data = json.loads(response.text)
-    quote = json_data[0]['sentence'] + " -" + json_data[0]['anime']
+    quote = json_data[0]["sentence"]
     return(quote)
 
 

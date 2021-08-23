@@ -30,7 +30,7 @@ def ani_quote():
 def ani_wink():
     response = requests.get("https://some-random-api.ml/animu/wink")
     json_data = json.load(response.text)
-    img = json_data[f"link"]
+    img = json_data["link"]
     return(img)
 
 @client.event

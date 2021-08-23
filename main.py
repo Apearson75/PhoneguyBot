@@ -4,13 +4,14 @@ import time
 import aiohttp
 import json
 import io
+import praw
 import discord.ext
 from discord.utils import get
 from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions,  CheckFailure, check
 from discord_slash import SlashCommand, SlashContext
 #^ basic imports for other features of discord.py and python ^
-
+reddit = praw.Reddit(client_id = "ZDRvL0nlV444h-H-rrPEhw", client_secret = "iq-_HsH8pBc1UG5V5NulahytoGcu9Q", username = "Phoneguytech", password = "JdERUPqBrUi74jD", user_agent = "PhoneguyReddit")
 client = discord.Client()
 
 client = commands.Bot(command_prefix = '-') #put 
@@ -165,6 +166,26 @@ async def passed(ctx, member : discord.Member):
          await passSession.close()
          await ctx.send(file=discord.File(imageData, 'passed.gif'))         
 
+@client.command()
+async def meme(ctx):
+    subreddit = reddit.subreddit("memes")
+    all_subs = []
+    top = subreddit.top(limit=50)
+
+    for submission in top:
+      all_subs.append(submission)
+
+    random_sub = random.choice(all_subs)
+
+    name = random_sub.title
+    url = random_sub.url
+
+    em = discord.Embed(title=name)
+    em.set_image(url=url)
+    await ctx.send(embed=em)
+        
+        
+        
 client.run(os.getenv("TOKEN")) #get your bot token and create a key named `TOKEN` to the secrets panel then paste your bot token as the value. 
 #to keep your bot from shutting down use https://uptimerobot.com then create a https:// monitor and put the link to the website that appewars when you run this repl in the monitor and it will keep your bot alive by pinging the flask server
 #enjoy!

@@ -147,7 +147,7 @@ async def simp(ctx, member : discord.Member):
 @client.command()
 async def passed(ctx, member : discord.Member):
   async with aiohttp.ClientSession() as passSession:
-        async with passSession.get(f'https://some-random-api.ml/canvas/wasted?avatar={member.avatar_url_as(format="png", size=1024)}') as passImg:
+        async with passSession.get(f'https://some-random-api.ml/canvas/passed?avatar={member.avatar_url_as(format="png", size=1024)}') as passImg:
          imageData = io.BytesIO(await passImg.read())
          await passSession.close()
          await ctx.send(file=discord.File(imageData, 'passed.gif'))         

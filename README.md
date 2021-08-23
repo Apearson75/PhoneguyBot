@@ -17,4 +17,6 @@ A discord bot I have created
 -trigger -- trigger a person
 -wasted -- gta reference
 -simp -- call a person a simp
+-aniquote -- sends a quote of an anime
+-aniwink -- don't even use it
 ```

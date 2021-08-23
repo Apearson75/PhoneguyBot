@@ -185,13 +185,23 @@ async def aniquote(ctx):
     outputquote = ani_quote()
     await ctx.send(outputquote)        
         
+@slash.slash(name="aniquote", description="gets a random quote from an anime")
+async def slashaniquote(ctx):
+    outputquote = ani_quote()
+    await ctx.send(outputquote)
+
 @client.command()
 async def aniwink(ctx):
     outputwink = ani_wink()
     await ctx.send(outputwink)
         
-        
-        
-client.run(os.getenv("TOKEN")) #get your bot token and create a key named `TOKEN` to the secrets panel then paste your bot token as the value. 
+@slash.slash(name="aniwink", description="shows a gif of an anime character winking")
+async def slashaniwink(ctx):
+    outputwink = ani_wink()
+    await ctx.send(outputwink)
+
+
+
+client.run(os.getenv("TOKEN")) #get your bot token and create a key named `TOKEN` to the secrets panel then paste your bot token as the value.
 #to keep your bot from shutting down use https://uptimerobot.com then create a https:// monitor and put the link to the website that appewars when you run this repl in the monitor and it will keep your bot alive by pinging the flask server
 #enjoy!

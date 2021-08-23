@@ -142,7 +142,15 @@ async def simp(ctx, member : discord.Member):
         async with simpSession.get(f'https://some-random-api.ml/canvas/simpcard?avatar={member.avatar_url_as(format="png", size=1024)}') as simpImg:
          imageData = io.BytesIO(await simpImg.read())
          await simpSession.close()
-         await ctx.send(file=discord.File(imageData, 'anime.png'))         
+         await ctx.send(file=discord.File(imageData, 'anime.png'))
+        
+@client.command()
+async def passed(ctx, member : discord.Member):
+  async with aiohttp.ClientSession() as passSession:
+        async with passSession.get(f'https://some-random-api.ml/canvas/wasted?avatar={member.avatar_url_as(format="png", size=1024)}') as passImg:
+         imageData = io.BytesIO(await passImg.read())
+         await passSession.close()
+         await ctx.send(file=discord.File(imageData, 'passed.gif'))         
 
 client.run(os.getenv("TOKEN")) #get your bot token and create a key named `TOKEN` to the secrets panel then paste your bot token as the value. 
 #to keep your bot from shutting down use https://uptimerobot.com then create a https:// monitor and put the link to the website that appewars when you run this repl in the monitor and it will keep your bot alive by pinging the flask server

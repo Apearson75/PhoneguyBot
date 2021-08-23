@@ -165,8 +165,7 @@ async def passed(ctx, member : discord.Member):
          imageData = io.BytesIO(await passImg.read())
          await passSession.close()
          await ctx.send(file=discord.File(imageData, 'passed.gif'))         
-
-
+ 
         
         
         

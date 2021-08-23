@@ -19,6 +19,14 @@ slash = SlashCommand(client, sync_commands=True)
 
 #your own prefix here
 
+
+def ani_quote():
+    response = requests.get("https://some-random-api.ml/animu/quote")
+    json_data = json.loads(response.text)
+    quote = json_data[0]['sentence'] + " -" + json_data[0]['anime']
+    return(quote)
+
+
 @client.event
 async def on_ready():
     print("bot online") #will print "bot online" in the console when the bot is online
@@ -164,7 +172,13 @@ async def passed(ctx, member : discord.Member):
         async with passSession.get(f'https://some-random-api.ml/canvas/passed?avatar={member.avatar_url_as(format="png", size=1024)}') as passImg:
          imageData = io.BytesIO(await passImg.read())
          await passSession.close()
-         await ctx.send(file=discord.File(imageData, 'passed.gif'))         
+         await ctx.send(file=discord.File(imageData, 'passed.gif'))   
+        
+@client.command()
+async def aniquote(ctx):
+    quote = ani_quote()
+    await ctx.send(quote)        
+        
  
         
         

@@ -3,6 +3,7 @@ import os
 import time
 import aiohttp
 import json
+import requests
 from random import random
 import io
 import discord.ext

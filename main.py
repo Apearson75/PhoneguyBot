@@ -128,10 +128,18 @@ async def trigger(ctx, member : discord.Member):
          await trigSession.close()
          await ctx.send(file=discord.File(imageData, 'triggered.gif'))
 
+@slash.slash(name="Trigger", description="trigger someone")
+async def slashtrigger(ctx, member : discord.Member):
+  async with aiohttp.ClientSession() as trigSession:
+        async with trigSession.get(f'https://some-random-api.ml/canvas/triggered?avatar={member.avatar_url_as(format="png", size=1024)}') as trigImg:
+         imageData = io.BytesIO(await trigImg.read())
+         await trigSession.close()
+         await ctx.send(file=discord.File(imageData, 'triggered.gif'))      
+        
 @client.command()
 async def wasted(ctx, member : discord.Member):
   async with aiohttp.ClientSession() as wasSession:
-        async with wasSession.get(f'https://some-random-api.ml/canvas/wasted?avatar={member.avatar_url_as(format="png", size=1024)}') as wasImg:
+        async with wasSession.get(f'https://some-random-api.ml/canvas/wasted?avatar={member.avatar_url_as(format="png", size=1024)}') as wasImg
          imageData = io.BytesIO(await wasImg.read())
          await wasSession.close()
          await ctx.send(file=discord.File(imageData, 'wasted.gif'))    

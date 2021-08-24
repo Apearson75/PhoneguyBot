@@ -38,6 +38,7 @@ def r_meme():
     json_data = json.loads(response.text)
     r_title = json_data['title']
     r_img = json_data[f'url']
+    return(r_title, r_img)
 
 
 @client.event

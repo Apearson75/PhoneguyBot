@@ -33,12 +33,7 @@ def ani_wink():
     img = json_data[f"link"]
     return(img)
 
-def r_meme():
-    response = requests.get('https://meme-api.herokuapp.com/gimme/memes')
-    json_data = json.loads(response.text)
-    r_title = json_data['title']
-    r_img = json_data[f'url']
-    return(r_title, r_img)
+
 
 
 @client.event
@@ -210,8 +205,13 @@ async def slashaniwink(ctx):
 
 @client.command()
 async def meme(ctx):
-    outputmeme = r_meme()
-    await ctx.send(outputmeme)
+    response = requests.get('https://meme-api.herokuapp.com/gimme/memes')
+    json_data = json.loads(response.text)
+    r_title = json_data['title']
+    r_img = json_data['url']
+    embed = discord.Embed(title=r_title)
+    embed.set_image(url=r_img)
+    await ctx.send(embed=embed)
 
 
 

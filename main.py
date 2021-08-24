@@ -33,6 +33,13 @@ def ani_wink():
     img = json_data[f"link"]
     return(img)
 
+def r_meme():
+    response = requests.get('https://meme-api.herokuapp.com/gimme/memes')
+    json_data = json.loads(response.text)
+    r_title = json_data['title']
+    r_img = json_data[f'url']
+
+
 @client.event
 async def on_ready():
     print("bot online") #will print "bot online" in the console when the bot is online
@@ -199,6 +206,12 @@ async def aniwink(ctx):
 async def slashaniwink(ctx):
     outputwink = ani_wink()
     await ctx.send(outputwink)
+
+@client.command()
+async def meme(ctx):
+    outputmeme = r_meme()
+    await ctx.send(outputmeme)
+
 
 
 

@@ -209,7 +209,8 @@ async def meme(ctx):
     json_data = json.loads(response.text)
     r_title = json_data['title']
     r_img = json_data['url']
-    embed = discord.Embed(title=r_title)
+    r_postlink = json_data['postLink']
+    embed = discord.Embed(title=r_title, url=r_postlink)
     embed.set_image(url=r_img)
     await ctx.send(embed=embed)
 

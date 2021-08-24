@@ -19,4 +19,5 @@ A discord bot I have created
 -simp -- call a person a simp
 -aniquote -- sends a quote of an anime
 -aniwink -- don't even use it
+-meme -- sends a meme to the server
 ```

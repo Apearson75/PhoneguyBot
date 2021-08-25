@@ -20,4 +20,5 @@ A discord bot I have created
 -aniquote -- sends a quote of an anime
 -aniwink -- don't even use it
 -meme -- sends a meme to the server
+-league -- shows the first match of the premier league
 ```

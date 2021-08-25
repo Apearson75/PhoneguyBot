@@ -242,7 +242,13 @@ async def image(ctx, *, search):
     url = requests.get(f'https://api.unsplash.com/photos/random?query={search}&orientation=landscape&client_id={key}')
     json_data = json.loads(url.text)
     image = json_data['urls']['regular']
-    await ctx.send(image)
+    unsplash_image = json_data['links']['html']
+    name = json_data['user']['first_name']
+    name_link = json_data['user']['links']['html']
+    embed = discord.Embed(title='Image from Unsplash', url=unsplash_image)
+    embed.set_image(url=image)
+    embed.add_field(name='Image By', value=f'{name} - {name_link}')
+    await ctx.send(embed=embed)
     
 
 

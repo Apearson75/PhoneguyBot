@@ -17,7 +17,7 @@ client = discord.Client()
 
 client = commands.Bot(command_prefix = '-') #put 
 slash = SlashCommand(client, sync_commands=True)
-
+football_api = os.getenv("FOOTBALL")
 #your own prefix here
 
 
@@ -213,6 +213,16 @@ async def meme(ctx):
     embed = discord.Embed(title=r_title, url=r_postlink)
     embed.set_image(url=r_img)
     await ctx.send(embed=embed)
+    
+@client.command()
+async def league(ctx, *, day):
+ connection = http.client.HTTPConnection('api.football-data.org')
+ headers = { 'X-Auth-Token': football_api }
+ connection.request('GET', f'/v2/competitions/PL/matches?matchday={day}', None, headers )
+ response = json.loads(connection.getresponse().read().decode())
+ away = response['matches'][0]['awayTeam']['name']
+ home = response['matches'][0]['homeTeam']['name']
+ await ctx.send(f'{away} vs {home}')    
 
 
 

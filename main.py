@@ -223,7 +223,16 @@ async def league(ctx, *, day):
  response = json.loads(connection.getresponse().read().decode())
  away = response['matches'][0]['awayTeam']['name']
  home = response['matches'][0]['homeTeam']['name']
- await ctx.send(f'{away} vs {home}')    
+ await ctx.send(f'{away} vs {home}')  
+
+@client.command()
+async def topscorer(ctx):
+     connection = http.client.HTTPConnection('api.football-data.org')
+     headers = { 'X-Auth-Token': football_api }
+     connection.request('GET', '/v2/competitions/PL/scorers?limit=1', None, headers )
+     response = json.loads(connection.getresponse().read().decode())
+     name = response['scorers'][0]['player']['firstName']
+     pprint(name)
 
 
 

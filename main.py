@@ -19,6 +19,7 @@ client = discord.Client()
 client = commands.Bot(command_prefix = '-') #put 
 slash = SlashCommand(client, sync_commands=True)
 football_api = os.getenv("FOOTBALL")
+unsplash = os.getenv("UNSPLASH")
 #your own prefix here
 
 
@@ -234,6 +235,15 @@ async def topscorer(ctx):
      name = response['scorers'][0]['player']['firstName']
      team = response['scorers'][0]['team']['name']
      await ctx.send(f'{name}  from  {team}')
+        
+@client.command()
+async def image(ctx, *, search):
+    key = unsplash
+    url = requests.get(f'https://api.unsplash.com/photos/random?query={search}&orientation=landscape&client_id={key}')
+    json_data = json.loads(url.text)
+    image = json_data['urls']['regular']
+    await ctx.send(image)
+    
 
 
 

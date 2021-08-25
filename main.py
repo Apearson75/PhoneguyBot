@@ -2,6 +2,7 @@ import discord
 import os
 import time
 import aiohttp
+import http.client
 import json
 import requests
 from random import random

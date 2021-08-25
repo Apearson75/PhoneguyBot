@@ -21,4 +21,6 @@ A discord bot I have created
 -aniwink -- don't even use it
 -meme -- sends a meme to the server
 -league -- shows the first match of the premier league
+-topscorer -- shows the top scorer in a league
+-image -- gets an image from unsplash
 ```

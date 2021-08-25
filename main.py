@@ -231,6 +231,7 @@ async def topscorer(ctx):
      headers = { 'X-Auth-Token': football_api }
      connection.request('GET', '/v2/competitions/PL/scorers?limit=1', None, headers )
      response = json.loads(connection.getresponse().read().decode())
+     name = response['scorers'][0]['player']['firstName']
      team = response['scorers'][0]['team']['name']
      await ctx.send(f'{name}  from  {team}')
 

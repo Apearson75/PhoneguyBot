@@ -232,7 +232,7 @@ async def topscorer(ctx):
      connection.request('GET', '/v2/competitions/PL/scorers?limit=1', None, headers )
      response = json.loads(connection.getresponse().read().decode())
      name = response['scorers'][0]['player']['firstName']
-     pprint(name)
+     await ctx.send(name)
 
 
 

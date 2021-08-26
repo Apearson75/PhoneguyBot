@@ -216,14 +216,14 @@ async def meme(ctx):
     embed.set_image(url=r_img)
     await ctx.send(embed=embed)
     
-@client.command()
-async def league(ctx, *, day):
+@slash.slash(name='Matchday', description='Gets a match on the match day')
+async def league(ctx, *, day, number : int):
  connection = http.client.HTTPConnection('api.football-data.org')
  headers = { 'X-Auth-Token': football_api }
  connection.request('GET', f'/v2/competitions/PL/matches?matchday={day}', None, headers )
  response = json.loads(connection.getresponse().read().decode())
- away = response['matches'][0]['awayTeam']['name']
- home = response['matches'][0]['homeTeam']['name']
+ away = response['matches'][number]['awayTeam']['name']
+ home = response['matches'][number]['homeTeam']['name']
  await ctx.send(f'{away} vs {home}')  
 
 @client.command()

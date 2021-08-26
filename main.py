@@ -42,7 +42,7 @@ def ani_wink():
 async def on_ready():
     print("bot online") #will print "bot online" in the console when the bot is online
     
-@slash.slash(name="update1", description="this command is only for updating the bot")    
+@slash.slash(name="update2", description="this command is only for updating the bot")    
 async def slashupdate(ctx):
    await ctx.send("Why did you use it?")
 

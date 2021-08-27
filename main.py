@@ -187,13 +187,19 @@ async def passed(ctx, member : discord.Member):
         
 @client.command()
 async def aniquote(ctx):
-    outputquote = ani_quote()
-    await ctx.send(outputquote)        
+    response = requests.get("https://some-random-api.ml/animu/quote")
+    json_data = json.loads(response.text)
+    quote = json_data["sentence"]
+    anime = json_data["anime"]
+    await ctx.send(f'{sentence} -- {anime}')
         
 @slash.slash(name="aniquote", description="gets a random quote from an anime")
 async def slashaniquote(ctx):
-    outputquote = ani_quote()
-    await ctx.send(outputquote)
+    response = requests.get("https://some-random-api.ml/animu/quote")
+    json_data = json.loads(response.text)
+    quote = json_data["sentence"]
+    anime = json_data["anime"]
+    await ctx.send(f'{sentence} -- {anime}')
 
 @client.command()
 async def aniwink(ctx):

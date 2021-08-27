@@ -256,6 +256,32 @@ async def image(ctx, *, search):
     embed.add_field(name='Image By', value=f'{name} - {name_link}')
     await ctx.send(embed=embed)
     
+@client.command()
+async def mute(ctx, member : discord.Member):
+    role = discord.utils.get(ctx.guild.roles, name="Muted")
+    guild = ctx.guild
+    if role not in guild.roles:
+        perms = discord.Permissions(send_messages=False)
+        await guild.create_role(name="Muted", permissions=perms)
+        await member.add_roles(role)
+        await ctx.send(f'Muted {member}')
+    else:
+        await member.add_roles(role)
+        await ctx.send(f'Muted {member}')
+        
+@slash.slash(name='mute', description='Make a role called Muted to use it')
+async def slashmute(ctx, member : discord.Member):
+    role = discord.utils.get(ctx.guild.roles, name="Muted")
+    guild = ctx.guild
+    if role not in guild.roles:
+        perms = discord.Permissions(send_messages=False)
+        await guild.create_role(name="Muted", permissions=perms)
+        await member.add_roles(role)
+        await ctx.send(f'Muted {member}')
+    else:
+        await member.add_roles(role)
+        await ctx.send(f'Muted {member}')
+    
 
 
 

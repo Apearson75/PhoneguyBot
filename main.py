@@ -46,6 +46,13 @@ async def on_ready():
 async def slashupdate(ctx):
    await ctx.send("Why did you use it?")
 
+@client.command()
+async def hello(ctx):
+    url = requests.get('https://phoneguyapi.herokuapp.com/test')
+    json_data = json.loads(url.text)
+    await ctx.send(json_data)
+
+
 
 @client.command()
 async def count(ctx, number : int):

@@ -42,7 +42,7 @@ def ani_wink():
 async def on_ready():
     print("bot online") #will print "bot online" in the console when the bot is online
     
-@slash.slash(name="update2", description="this command is only for updating the bot")    
+@slash.slash(name="update3", description="this command is only for updating the bot")    
 async def slashupdate(ctx):
    await ctx.send("Why did you use it?")
 
@@ -249,6 +249,16 @@ async def topscorer(ctx):
      team = response['scorers'][0]['team']['name']
      await ctx.send(f'{name}  from  {team}')
         
+@slash.slash(name='FirstMatch', description='Gets the first match of a team')
+async def firstmatch(ctx, *, team):
+     connection = http.client.HTTPConnection('api.football-data.org')
+     headers = { 'X-Auth-Token': football_api }
+     connection.request('GET', f'/v2/teams/{team}/matches?status=SCHEDULED&limit=1', None, headers )
+     response = json.loads(connection.getresponse().read().decode())
+     away = response['matches'][0]['awayTeam']['name']
+     home = response['matches'][0]['homeTeam']['name']
+     await ctx.send(f'{away}  vs  {home}')
+
 @client.command()
 async def image(ctx, *, search):
     key = unsplash

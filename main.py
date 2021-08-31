@@ -230,10 +230,10 @@ async def meme(ctx):
     await ctx.send(embed=embed)
     
 @slash.slash(name='Matchday', description='Gets a match on the match day')
-async def league(ctx, *, day, number : int):
+async def league(ctx, *, league, day, number : int):
  connection = http.client.HTTPConnection('api.football-data.org')
  headers = { 'X-Auth-Token': football_api }
- connection.request('GET', f'/v2/competitions/PL/matches?matchday={day}', None, headers )
+ connection.request('GET', f'/v2/competitions/{league}/matches?matchday={day}', None, headers )
  response = json.loads(connection.getresponse().read().decode())
  away = response['matches'][number]['awayTeam']['name']
  home = response['matches'][number]['homeTeam']['name']

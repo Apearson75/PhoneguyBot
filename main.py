@@ -260,6 +260,13 @@ async def firstmatch(ctx, *, team):
      await ctx.send(f'{away}  vs  {home}')
 
 @client.command()
+async def leagues(ctx):
+    with open('football.txt', 'r') as foot:
+     embed=discord.Embed(title="Commands List",
+     description=foot.read(),color=0xc93bf5)
+     await ctx.send(embed=embed)
+
+@client.command()
 async def image(ctx, *, search):
     key = unsplash
     url = requests.get(f'https://api.unsplash.com/photos/random?query={search}&orientation=landscape&client_id={key}')

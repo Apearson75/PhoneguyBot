@@ -23,5 +23,6 @@ A discord bot I have created
 -league -- shows the first match of the premier league
 -topscorer -- shows the top scorer in a league
 -image -- gets an image from unsplash
-
+-mute -- mutes a person
+-leagues -- shows a list of leagues to use with football commands
 ```

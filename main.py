@@ -20,6 +20,7 @@ client = commands.Bot(command_prefix = '-') #put
 slash = SlashCommand(client, sync_commands=True)
 football_api = os.getenv("FOOTBALL")
 unsplash = os.getenv("UNSPLASH")
+api_football = os.getenv("API_FOOTBALL")
 #your own prefix here
 
 
@@ -44,7 +45,7 @@ async def on_ready():
     game = discord.Game('Epic Bot')
     await client.change_presence(status=discord.Status.online, activity=game)
     
-@slash.slash(name="update3", description="this command is only for updating the bot")    
+@slash.slash(name="update4", description="this command is only for updating the bot")    
 async def slashupdate(ctx):
    await ctx.send("Why did you use it?")
 
@@ -261,6 +262,27 @@ async def firstmatch(ctx, *, team):
      home = response['matches'][0]['homeTeam']['name']
      await ctx.send(f'{away}  vs  {home}')
 
+@slash.slash(name='footsearch', description='searches a football team')
+async def search(ctx, *, team):
+    conn = http.client.HTTPSConnection("v3.football.api-sports.io")
+    headers = {
+        'x-rapidapi-host': "v3.football.api-sports.io",
+        'x-rapidapi-key': api_football
+    }
+
+    conn.request("GET", f"/teams?search={team}", headers=headers)
+    res = conn.getresponse()
+    data = res.read()
+    real_data = json.loads(data)
+    name = real_data['response'][0]['team']['name']
+    id = real_data['response'][0]['team']['id']
+    logo = real_data['response'][0]['team']['logo']
+    embed = discord.Embed(title=name)
+    embed.set_image(url=logo)
+    embed.add_field(name='id:', value=id)
+    await ctx.send(embed=embed)
+        
+        
 @client.command()
 async def leagues(ctx):
     with open('football.txt', 'r') as foot:

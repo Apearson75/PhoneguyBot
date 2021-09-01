@@ -278,9 +278,11 @@ async def search(ctx, *, team):
     name = real_data['response'][0]['team']['name']
     id = real_data['response'][0]['team']['id']
     logo = real_data['response'][0]['team']['logo']
+    founded = real_data['response'][0]['team']['founded']
     embed = discord.Embed(title=name)
     embed.set_image(url=logo)
     embed.add_field(name='id:', value=id)
+    embed.add_field(name='Founded:', value=founded)
     await ctx.send(embed=embed)
         
         

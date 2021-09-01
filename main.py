@@ -41,6 +41,8 @@ def ani_wink():
 @client.event
 async def on_ready():
     print("bot online") #will print "bot online" in the console when the bot is online
+    game = discord.Game(f'{str(len(client.guilds))} servers')
+    await client.change_presence(status=discord.Status.online, activity=game)
     
 @slash.slash(name="update3", description="this command is only for updating the bot")    
 async def slashupdate(ctx):

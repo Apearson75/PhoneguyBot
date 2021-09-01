@@ -264,13 +264,14 @@ async def firstmatch(ctx, *, team):
 
 @slash.slash(name='footsearch', description='searches a football team')
 async def search(ctx, *, team):
+    true_team = team.replace(' ', '%20')
     conn = http.client.HTTPSConnection("v3.football.api-sports.io")
     headers = {
         'x-rapidapi-host': "v3.football.api-sports.io",
         'x-rapidapi-key': api_football
     }
 
-    conn.request("GET", f"/teams?search={team}", headers=headers)
+    conn.request("GET", f"/teams?search={true_team}", headers=headers)
     res = conn.getresponse()
     data = res.read()
     real_data = json.loads(data)

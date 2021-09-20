@@ -332,6 +332,10 @@ async def slashmute(ctx, member : discord.Member):
     else:
         await member.add_roles(role)
         await ctx.send(f'Muted {member}')
+        
+@client.command()
+async def delta(ctx):
+   await ctx.send(file=discord.File('deltarune.gif')
     
 
 

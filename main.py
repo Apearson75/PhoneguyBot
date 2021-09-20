@@ -335,12 +335,10 @@ async def slashmute(ctx, member : discord.Member):
         
 @client.command()
 async def delta(ctx):
-   await ctx.send(file=discord.File('deltarune.gif')
+   await ctx.send(file=discord.File('deltarune.gif'))
     
 
 
 
 
-client.run(os.getenv("TOKEN")) #get your bot token and create a key named `TOKEN` to the secrets panel then paste your bot token as the value.
-#to keep your bot from shutting down use https://uptimerobot.com then create a https:// monitor and put the link to the website that appewars when you run this repl in the monitor and it will keep your bot alive by pinging the flask server
-#enjoy!
+client.run(os.getenv("TOKEN"))

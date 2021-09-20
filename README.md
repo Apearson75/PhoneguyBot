@@ -25,4 +25,5 @@ A discord bot I have created
 -image -- gets an image from unsplash
 -mute -- mutes a person
 -leagues -- shows a list of leagues to use with football commands
+-delta -- DELTARUNE
 ```

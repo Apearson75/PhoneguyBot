@@ -12,6 +12,7 @@ from discord.utils import get
 from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions,  CheckFailure, check
 from discord_slash import SlashCommand, SlashContext
+from ssa_wrapper import *
 #^ basic imports for other features of discord.py and python ^
 
 client = discord.Client()

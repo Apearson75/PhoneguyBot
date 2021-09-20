@@ -4,3 +4,4 @@ discord-py-slash-command
 aiohttp
 http.client
 requests
+ssa-api-wrapper

@@ -346,6 +346,17 @@ async def ssatweets(ctx):
     await ctx.send(tweet_text)
     await ctx.send(tweet_link)
 
+@client.command()
+async def fmeme(ctx):
+    response = requests.get('https://meme-api.herokuapp.com/gimme/younestalksfootball')
+    json_data = json.loads(response.text)
+    r_title = json_data['title']
+    r_img = json_data['url']
+    r_postlink = json_data['postLink']
+    embed = discord.Embed(title=r_title, url=r_postlink)
+    embed.set_image(url=r_img)
+    await ctx.send(embed=embed)    
+    
 
 
 

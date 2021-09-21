@@ -202,7 +202,7 @@ async def aniquote(ctx):
     json_data = json.loads(response.text)
     quote = json_data["sentence"]
     anime = json_data["anime"]
-    await ctx.send(f'{sentence} -- {anime}')
+    await ctx.send(f'{quote} -- {anime}')
         
 @slash.slash(name="aniquote", description="gets a random quote from an anime")
 async def slashaniquote(ctx):
@@ -210,7 +210,7 @@ async def slashaniquote(ctx):
     json_data = json.loads(response.text)
     quote = json_data["sentence"]
     anime = json_data["anime"]
-    await ctx.send(f'{sentence} -- {anime}')
+    await ctx.send(f'{quote} -- {anime}')
 
 @client.command()
 async def aniwink(ctx):

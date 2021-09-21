@@ -26,4 +26,5 @@ A discord bot I have created
 -mute -- mutes a person
 -leagues -- shows a list of leagues to use with football commands
 -delta -- DELTARUNE
+-fmeme -- shows football memes ig
 ```

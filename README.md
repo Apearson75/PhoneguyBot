@@ -27,4 +27,5 @@ A discord bot I have created
 -leagues -- shows a list of leagues to use with football commands
 -delta -- DELTARUNE
 -fmeme -- shows football memes ig
+-reddit -- shows something from a subreddit
 ```

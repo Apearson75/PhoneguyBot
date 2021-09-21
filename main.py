@@ -355,7 +355,19 @@ async def fmeme(ctx):
     r_postlink = json_data['postLink']
     embed = discord.Embed(title=r_title, url=r_postlink)
     embed.set_image(url=r_img)
-    await ctx.send(embed=embed)    
+    await ctx.send(embed=embed)
+
+@client.command()
+async def reddit(ctx, *, subreddit):
+    response = requests.get(f'https://meme-api.herokuapp.com/gimme/{subreddit}')
+    json_data = json.loads(response.text)
+    r_title = json_data['title']
+    r_img = json_data['url']
+    r_postlink = json_data['postLink']
+    embed = discord.Embed(title=r_title, url=r_postlink)
+    embed.add_field(name='Subreddit:', value=subreddit)
+    embed.set_image(url=r_img)
+    await ctx.send(embed=embed)        
     
 
 

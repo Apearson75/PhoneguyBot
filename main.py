@@ -343,7 +343,8 @@ async def ssatweets(ctx):
     tweet = ssa_twitter.latesttweet()
     tweet_text = tweet['data'][0]['text']
     tweet_link = tweet['data'][0]['entities']['urls'][0]['url']
-    embed = discord.Embed(title='@StratfordSch', url='https://twitter.com/StratfordSch')
+    embed = discord.Embed(title='LatestTweet', url=tweet_link)
+    embed.set_author(name='@StratfordSch', icon_url='https://pbs.twimg.com/profile_images/1384818743105228804/YoNNRMKY_400x400.jpg', url='https://twitter.com/StratfordSch')
     embed.add_field(name='Tweet', value=tweet_text)
     await ctx.send(embed=embed)
     

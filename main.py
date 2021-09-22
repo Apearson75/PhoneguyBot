@@ -343,8 +343,10 @@ async def ssatweets(ctx):
     tweet = ssa_twitter.latesttweet()
     tweet_text = tweet['data'][0]['text']
     tweet_link = tweet['data'][0]['entities']['urls'][0]['url']
-    await ctx.send(tweet_text)
-    await ctx.send(tweet_link)
+    embed = discord.Embed(title='@StratfordSch', url='https://twitter.com/StratfordSch')
+    embed.add_field(name='Tweet', value=tweet_text)
+    await ctx.send(embed=embed)
+    
 
 @client.command()
 async def fmeme(ctx):

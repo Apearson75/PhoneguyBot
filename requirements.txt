@@ -5,3 +5,4 @@ aiohttp
 http.client
 requests
 ssa-api-wrapper
+Flask

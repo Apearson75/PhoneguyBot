@@ -13,6 +13,7 @@ from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions,  CheckFailure, check
 from discord_slash import SlashCommand, SlashContext
 from ssa_wrapper import ssa_twitter
+from alive import keep_alive
 #^ basic imports for other features of discord.py and python ^
 
 client = discord.Client()
@@ -374,5 +375,5 @@ async def reddit(ctx, *, subreddit):
     
 
 
-
+keep_alive()
 client.run(os.getenv("TOKEN"))

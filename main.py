@@ -361,7 +361,7 @@ async def fmeme(ctx):
     embed.set_image(url=r_img)
     await ctx.send(embed=embed)
 
-@client.command()
+@client.command(aliases=['r'])
 async def reddit(ctx, *, subreddit):
     response = requests.get(f'https://meme-api.herokuapp.com/gimme/{subreddit}')
     json_data = json.loads(response.text)

@@ -14,15 +14,19 @@ from discord.ext.commands import has_permissions,  CheckFailure, check
 from discord_slash import SlashCommand, SlashContext
 from ssa_wrapper import ssa_twitter
 from alive import keep_alive
+import random
 #^ basic imports for other features of discord.py and python ^
 
-client = discord.Client()
+intents = discord.Intents.default()
+intents.members = True
+client = discord.Client(intents=intents)
 
 client = commands.Bot(command_prefix = '-') #put 
 slash = SlashCommand(client, sync_commands=True)
 football_api = os.getenv("FOOTBALL")
 unsplash = os.getenv("UNSPLASH")
 api_football = os.getenv("API_FOOTBALL")
+webhook = os.getenv("Webhook")
 #your own prefix here
 
 
@@ -38,14 +42,19 @@ def ani_wink():
     img = json_data[f"link"]
     return(img)
 
-
-
+    
 
 @client.event
 async def on_ready():
     print("bot online") #will print "bot online" in the console when the bot is online
     game = discord.Game('Epic Bot')
     await client.change_presence(status=discord.Status.online, activity=game)
+
+@client.event
+async def on_member_join(member):
+    await member.send("Welcome!")
+
+
     
 @slash.slash(name="update4", description="this command is only for updating the bot")    
 async def slashupdate(ctx):
@@ -371,9 +380,95 @@ async def reddit(ctx, *, subreddit):
     embed = discord.Embed(title=r_title, url=r_postlink)
     embed.add_field(name='Subreddit:', value=subreddit)
     embed.set_image(url=r_img)
-    await ctx.send(embed=embed)        
-    
+    await ctx.send(embed=embed) 
 
+@client.command()
+async def sudo(ctx, member : discord.Member, *, msg):
+   avatar = member.avatar_url_as(format="png", size=1024)
+   name = member.name
+   requests.post(webhook, data=json.dumps({}))
+
+# For Econonmy Keep Seperate.
+@client.command(aliases=['bal'])
+async def balance(ctx):
+    await open_account(ctx.author)
+    user = ctx.author
+
+    users = await get_bank_data()
+
+    wallet_amt = users[str(user.id)]["wallet"]
+    bank_amt = users[str(user.id)]["bank"]
+
+    em = discord.Embed(title=f'{ctx.author.name} Balance',color = discord.Color.purple())
+    em.add_field(name="Wallet", value=wallet_amt)
+    em.add_field(name='Bank',value=bank_amt)
+    if wallet_amt == 0:
+      em.set_image(url='https://st.depositphotos.com/1518767/3846/i/950/depositphotos_38462065-stock-photo-red-arrow-pointing-down.jpg')
+    await ctx.send(embed=em)
+
+@client.command()
+async def beg(ctx):
+    await open_account(ctx.author)
+    user = ctx.author
+
+    users = await get_bank_data()
+
+    earnings = random.randrange(101)
+
+    await ctx.send(f'{ctx.author.mention} Got {earnings} coins!!')
+
+    users[str(user.id)]["wallet"] += earnings
+
+    with open("mainbank.json",'w') as f:
+        json.dump(users,f)    
+
+async def open_account(user):
+
+    users = await get_bank_data()
+
+    if str(user.id) in users:
+        return False
+    else:
+        users[str(user.id)] = {}
+        users[str(user.id)]["wallet"] = 0
+        users[str(user.id)]["bank"] = 0
+
+    with open('mainbank.json','w') as f:
+        json.dump(users,f)
+
+    return True
+
+
+async def get_bank_data():
+    with open('mainbank.json','r') as f:
+        users = json.load(f)
+
+    return users
+#Economy Stuff Ends Here.
+
+@client.command(aliases=['dict'])
+async def dictionary(ctx,*,word):
+  url = requests.get(f'https://api.dictionaryapi.dev/api/v2/entries/en/{word}')
+  cap_word = word.capitalize()
+  json_data = json.loads(url.text)
+  definition = json_data[0]['meanings'][0]["definitions"][0]['definition']
+  definition_example = json_data[0]['meanings'][0]["definitions"][0]["example"]
+  embed = discord.Embed(title=cap_word)
+  embed.add_field(name='Definition:',value=definition)
+  embed.add_field(name='Example:', value=definition_example)
+  await ctx.send(embed=embed)
+
+@slash.slash(name='Dictionary', description='Searches a word in a dictionary')
+async def slashdictionary(ctx,*,word):
+  url = requests.get(f'https://api.dictionaryapi.dev/api/v2/entries/en/{word}')
+  cap_word = word.capitalize()
+  json_data = json.loads(url.text)
+  definition = json_data[0]['meanings'][0]["definitions"][0]['definition']
+  definition_example = json_data[0]['meanings'][0]["definitions"][0]["example"]
+  embed = discord.Embed(title=cap_word)
+  embed.add_field(name='Definition:',value=definition)
+  embed.add_field(name='Example:', value=definition_example)
+  await ctx.send(embed=embed)
 
 keep_alive()
 client.run(os.getenv("TOKEN"))

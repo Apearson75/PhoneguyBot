@@ -28,4 +28,6 @@ A discord bot I have created
 -delta -- DELTARUNE
 -fmeme -- shows football memes ig
 -r -- shows something from a subreddit
+-balance -- shows your balance
+-dict -- searches a word in a dictionary
 ```

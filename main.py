@@ -122,10 +122,10 @@ async def server(ctx):
 async def vote(ctx):
   await ctx.send("https://top.gg/bot/852619132138160148")
 
-@client.command()
+@client.command(aliases=['h'])
 async def commands(ctx):
   with open('commands.txt', 'r') as cmds:
-    embed=discord.Embed(title="Commands List",
+    embed=discord.Embed(title="Commands List:",
     description=cmds.read(),color=0xc93bf5)
     await ctx.send(embed=embed)
 
@@ -317,6 +317,20 @@ async def image(ctx, *, search):
     embed.set_image(url=image)
     embed.add_field(name='Image By', value=f'{name} - {name_link}')
     await ctx.send(embed=embed)
+
+@slash.slash(name='image', description='Searches an image from Unsplash')
+async def slashimage(ctx, *, search):
+    key = unsplash
+    url = requests.get(f'https://api.unsplash.com/photos/random?query={search}&orientation=landscape&client_id={key}')
+    json_data = json.loads(url.text)
+    image = json_data['urls']['regular']
+    unsplash_image = json_data['links']['html']
+    name = json_data['user']['first_name']
+    name_link = json_data['user']['links']['html']
+    embed = discord.Embed(title='Image from Unsplash', url=unsplash_image)
+    embed.set_image(url=image)
+    embed.add_field(name='Image By', value=f'{name} - {name_link}')
+    await ctx.send(embed=embed)    
     
 @client.command()
 async def mute(ctx, member : discord.Member):
@@ -404,6 +418,8 @@ async def balance(ctx):
     em.add_field(name='Bank',value=bank_amt)
     if wallet_amt == 0:
       em.set_image(url='https://st.depositphotos.com/1518767/3846/i/950/depositphotos_38462065-stock-photo-red-arrow-pointing-down.jpg')
+    elif wallet_amt >= 1000000:
+      em.set_image(url='http://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/thumbs-up.png')  
     await ctx.send(embed=em)
 
 @client.command()

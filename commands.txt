@@ -1,12 +1,14 @@
+**Starts Here:**
 -count -- adds one number
+
+**:hammer:Admin Stuff:hammer::**
 -clear -- deletes a certain amount of messages
 -kick -- kicks a person out of your server
+-mute -- mutes a person
+
+**:partying_face:Fun Commands:partying_face::**
 -say -- makes the bot say something
 -stab -- stabs the mentioned person
--source -- sends a link to this repo
--server -- sends the link to the idk discord server
--vote -- goes to the top.gg page of my bot
--commands -- shows a list of commands
 -avatar -- shows a person's pfp
 -toprole -- shows a person's top role
 -trigger -- trigger a person
@@ -14,14 +16,28 @@
 -simp -- call a person a simp
 -aniquote -- sends a quote of an anime
 -aniwink -- don't even use it
--meme -- sends a meme to the server
+-dict -- searches a word in a dictionary
+-delta -- DELTARUNE
+-image -- gets an image from unsplash
+-ssatweets -- gets tweets from @StratfordSch **WIP**
+
+**:volleyball:Football Commands:volleyball::**
 -league -- shows the first match of the premier league
 -topscorer -- shows the top scorer in a league
--image -- gets an image from unsplash
--mute -- mutes a person
 -leagues -- shows a list of leagues to use with football commands
--delta -- DELTARUNE
+
+
+**:computer:REDDIT:computer::**
+-meme -- sends a meme to the server
 -fmeme -- shows football memes ig
 -r -- shows something from a subreddit
+
+**:coin:Economy Commands:coin::**
 -balance -- shows your balance
--dict -- searches a word in a dictionary
+-beg -- beg for money
+
+**:pencil:Info and Help:pencil::**
+-source -- sends a link to this repo
+-server -- sends the link to the idk discord server
+-vote -- goes to the top.gg page of my bot
+-commands -- shows a list of commands

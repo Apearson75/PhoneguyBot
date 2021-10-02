@@ -19,9 +19,9 @@ import random
 
 intents = discord.Intents.default()
 intents.members = True
-client = discord.Client(intents=intents)
 
-client = commands.Bot(command_prefix = '-') #put 
+
+client = commands.Bot(command_prefix = '-', intents=intents) #put 
 slash = SlashCommand(client, sync_commands=True)
 football_api = os.getenv("FOOTBALL")
 unsplash = os.getenv("UNSPLASH")
@@ -51,12 +51,33 @@ async def on_ready():
     await client.change_presence(status=discord.Status.online, activity=game)
 
 @client.event
-async def on_member_join(member):
-    await member.send("Welcome!")
+async def on_guild_join(guild):
+  with open('commands.txt', 'r') as cmds:
+     embed=discord.Embed(title="Thank you for adding me to you server. Here are a list of commands:",
+     description=cmds.read(),color=0xc93bf5)
+     await guild.text_channels[0].send(embed=embed)
 
+@client.event
+async def on_member_join(member):
+  embed=discord.Embed(title=f'Welcome {member.name}!!',color=0xc93bf5)
+  embed.set_image(url=member.avatar_url)
+  await client.get_channel(877551602603528262).send(embed=embed)
+  with open('commands.txt', 'r') as cmds:
+     dm_embed=discord.Embed(title="Hey, Check out all the stuff I can do in the server:",
+     description=cmds.read(),color=0xc93bf5)
+     await member.send(embed=dm_embed)  
+     
+@client.event
+async def on_member_remove(member):
+  embed=discord.Embed(title=f'The Idiot {member.name} left the server',color=0xc93bf5)
+  embed.set_image(url='https://thumbs.dreamstime.com/b/sad-face-doodle-icon-vector-illustration-color-184934100.jpg')
+  await client.get_channel(877551602603528262).send(embed=embed)
+  await member.send('It was nice knowing you!')
+
+       
 
     
-@slash.slash(name="update4", description="this command is only for updating the bot")    
+@slash.slash(name="update5", description="this command is only for updating the bot")    
 async def slashupdate(ctx):
    await ctx.send("Why did you use it?")
 
@@ -485,6 +506,12 @@ async def slashdictionary(ctx,*,word):
   embed.add_field(name='Definition:',value=definition)
   embed.add_field(name='Example:', value=definition_example)
   await ctx.send(embed=embed)
+
+@slash.slash(name='DM', description='DM someone')
+async def dm(ctx,*,text,member: discord.Member):
+  await member.send(text)
+  await ctx.send(f'I sent "{text}"')
+
 
 keep_alive()
 client.run(os.getenv("TOKEN"))

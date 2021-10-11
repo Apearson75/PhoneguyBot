@@ -15,18 +15,22 @@ from discord_slash import SlashCommand, SlashContext
 from ssa_wrapper import ssa_twitter
 from alive import keep_alive
 import random
+from discord_components import Button, Select, SelectOption, ComponentsBot
 #^ basic imports for other features of discord.py and python ^
 
+#Discord Config Stuff
 intents = discord.Intents.default()
 intents.members = True
-
-
-client = commands.Bot(command_prefix = '-', intents=intents) #put 
+client = commands.Bot(command_prefix = '-', intents=intents) 
 slash = SlashCommand(client, sync_commands=True)
+
+
+#API KEYS
 football_api = os.getenv("FOOTBALL")
 unsplash = os.getenv("UNSPLASH")
 api_football = os.getenv("API_FOOTBALL")
 webhook = os.getenv("Webhook")
+idk_server = '877549922373742632'
 #your own prefix here
 
 
@@ -47,11 +51,13 @@ def ani_wink():
 @client.event
 async def on_ready():
     print("bot online") #will print "bot online" in the console when the bot is online
+    print(f'I am in {str(len(client.guilds))} servers')
     game = discord.Game('Epic Bot')
     await client.change_presence(status=discord.Status.online, activity=game)
 
 @client.event
 async def on_guild_join(guild):
+  print("The bot is in a new server!!")
   with open('commands.txt', 'r') as cmds:
      embed=discord.Embed(title="Thank you for adding me to you server. Here are a list of commands:",
      description=cmds.read(),color=0xc93bf5)
@@ -59,20 +65,23 @@ async def on_guild_join(guild):
 
 @client.event
 async def on_member_join(member):
-  embed=discord.Embed(title=f'Welcome {member.name}!!',color=0xc93bf5)
-  embed.set_image(url=member.avatar_url)
-  await client.get_channel(877551602603528262).send(embed=embed)
-  with open('commands.txt', 'r') as cmds:
+  guild = member.guild.id
+  if guild == 877549922373742632:
+   embed=discord.Embed(title=f'Welcome {member.name}!!',color=0xc93bf5)
+   embed.set_image(url=member.avatar_url)
+   await client.get_channel(877551602603528262).send(embed=embed)
+   with open('commands.txt', 'r') as cmds:
      dm_embed=discord.Embed(title="Hey, Check out all the stuff I can do in the server:",
      description=cmds.read(),color=0xc93bf5)
-     await member.send(embed=dm_embed)  
-     
-@client.event
+     await member.send(embed=dm_embed)
+   
+#@client.event
 async def on_member_remove(member):
-  embed=discord.Embed(title=f'The Idiot {member.name} left the server',color=0xc93bf5)
-  embed.set_image(url='https://thumbs.dreamstime.com/b/sad-face-doodle-icon-vector-illustration-color-184934100.jpg')
-  await client.get_channel(877551602603528262).send(embed=embed)
-  await member.send('It was nice knowing you!')
+  if client.name == 'idk':
+   embed=discord.Embed(title=f'The Idiot {member.name} left the server',color=0xc93bf5)
+   embed.set_image(url='https://thumbs.dreamstime.com/b/sad-face-doodle-icon-vector-illustration-color-184934100.jpg')
+   await client.get_channel(877551602603528262).send(embed=embed)
+   await member.send('It was nice knowing you!')
 
        
 
@@ -511,6 +520,16 @@ async def slashdictionary(ctx,*,word):
 async def dm(ctx,*,text,member: discord.Member):
   await member.send(text)
   await ctx.send(f'I sent "{text}"')
+
+@client.command()
+async def button(ctx):
+    await ctx.send("Buttons!", components=[Button(label="Button", custom_id="button1")])
+@client.event
+async def on_button_click(interaction):
+    await interaction.respond(content="Button Clicked")
+
+
+   
 
 
 keep_alive()

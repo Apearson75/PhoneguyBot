@@ -21,13 +21,13 @@
 -image -- gets an image from unsplash
 -ssatweets -- gets tweets from @StratfordSch **WIP**
 
-**:volleyball:Football Commands:volleyball::**
+**:soccer:Football Commands:soccer::**
 -league -- shows the first match of the premier league
 -topscorer -- shows the top scorer in a league
 -leagues -- shows a list of leagues to use with football commands
 
 
-**:computer:REDDIT:computer::**
+**<:reddit:893821736359977051>REDDIT<:reddit:893821736359977051>:**
 -meme -- sends a meme to the server
 -fmeme -- shows football memes ig
 -r -- shows something from a subreddit

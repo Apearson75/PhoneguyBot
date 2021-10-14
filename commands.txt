@@ -1,10 +1,11 @@
 **Starts Here:**
 -count -- adds one number
 
-**:hammer:Admin Stuff:hammer::**
+**:hammer:Server Stuff:hammer::**
 -clear -- deletes a certain amount of messages
 -kick -- kicks a person out of your server
 -mute -- mutes a person
+-serverinfo -- gets info about the server
 
 **:partying_face:Fun Commands:partying_face::**
 -say -- makes the bot say something

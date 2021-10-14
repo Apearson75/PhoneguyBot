@@ -21,6 +21,7 @@ from discord_components import Button, Select, SelectOption, ComponentsBot
 #Discord Config Stuff
 intents = discord.Intents.default()
 intents.members = True
+intents.messages = True
 client = commands.Bot(command_prefix = '-', intents=intents) 
 slash = SlashCommand(client, sync_commands=True)
 
@@ -528,8 +529,23 @@ async def button(ctx):
 async def on_button_click(interaction):
     await interaction.respond(content="Button Clicked")
 
+@client.command()
+async def serverinfo(ctx):
+  guild = ctx.message.guild
+  server_name = guild
+  server_made = guild.created_at
+  server_members = guild.member_count
+  server_owner = guild.owner
+  server_img = guild.icon_url
+  embed = discord.Embed(title=server_name)
+  embed.add_field(name='Member Count:', value=server_members)
+  embed.add_field(name='Owner:', value=server_owner)
+  embed.set_thumbnail(url=server_img)
+  embed.set_footer(text=f'Server made on {server_made}')
+  await ctx.send(embed=embed)
 
-   
+
+
 
 
 keep_alive()

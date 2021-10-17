@@ -76,18 +76,19 @@ async def on_member_join(member):
      description=cmds.read(),color=0xc93bf5)
      await member.send(embed=dm_embed)
    
-#@client.event
+@client.event
 async def on_member_remove(member):
-  if client.name == 'idk':
+  guild = member.guild.id
+  if guild == 877549922373742632:
    embed=discord.Embed(title=f'The Idiot {member.name} left the server',color=0xc93bf5)
-   embed.set_image(url='https://thumbs.dreamstime.com/b/sad-face-doodle-icon-vector-illustration-color-184934100.jpg')
-   await client.get_channel(877551602603528262).send(embed=embed)
+   embed.set_image(url=f'https://some-random-api.ml/canvas/wasted?avatar={member.avatar_url_as(format="png", size=1024)}')
+   await client.get_channel(899301575141519362).send(embed=embed)
    await member.send('It was nice knowing you!')
 
        
 
     
-@slash.slash(name="update5", description="this command is only for updating the bot")    
+@slash.slash(name="update6", description="this command is only for updating the bot")    
 async def slashupdate(ctx):
    await ctx.send("Why did you use it?")
 
@@ -105,7 +106,10 @@ async def count(ctx, number : int):
 
 @client.command()
 async def clear(ctx, number : int):
-    await ctx.channel.purge(limit=number+1)   
+    if ctx.author.id == 426794153838641152:
+      pass
+    else:
+      await ctx.channel.purge(limit=number+1)   
 
 @slash.slash(name="clear", description="clears messages")
 async def slashclear(ctx, number : int):
@@ -545,6 +549,12 @@ async def serverinfo(ctx):
   await ctx.send(embed=embed)
 
 
+@slash.slash(name='Remind', description='Reminds you')
+async def remind(ctx, *, info, days : int, member : discord.Member=None):
+  member = ctx.author
+  await ctx.send(info)
+  await ctx.send(days)
+  await ctx.send(member)
 
 
 

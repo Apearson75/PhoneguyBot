@@ -523,8 +523,11 @@ async def slashdictionary(ctx,*,word):
 
 @slash.slash(name='DM', description='DM someone')
 async def dm(ctx,*,text,member: discord.Member):
-  await member.send(text)
-  await ctx.send(f'I sent "{text}"')
+  try:
+    await member.send(text)
+    await ctx.send(f'I sent your message')
+  except:
+    await ctx.send('I cannot send dms to that user')
 
 @client.command()
 async def button(ctx):
@@ -549,12 +552,6 @@ async def serverinfo(ctx):
   await ctx.send(embed=embed)
 
 
-@slash.slash(name='Remind', description='Reminds you')
-async def remind(ctx, *, info, days : int, member : discord.Member=None):
-  member = ctx.author
-  await ctx.send(info)
-  await ctx.send(days)
-  await ctx.send(member)
 
 
 

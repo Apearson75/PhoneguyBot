@@ -356,18 +356,14 @@ async def image(ctx, *, search):
     embed.set_image(url=url)
     await ctx.send(embed=embed)
 
-@slash.slash(name='image', description='Searches an image from Unsplash')
+@slash.slash(name='image', description='Searches an image from Google')
 async def slashimage(ctx, *, search):
-    key = unsplash
-    url = requests.get(f'https://api.unsplash.com/photos/random?query={search}&orientation=landscape&client_id={key}')
-    json_data = json.loads(url.text)
-    image = json_data['urls']['regular']
-    unsplash_image = json_data['links']['html']
-    name = json_data['user']['first_name']
-    name_link = json_data['user']['links']['html']
-    embed = discord.Embed(title='Image from Unsplash', url=unsplash_image)
-    embed.set_image(url=image)
-    embed.add_field(name='Image By', value=f'{name} - {name_link}')
+    ran = random.randint(0, 9)
+    resource = build("customsearch", "v1", developerKey=google_key).cse()
+    result = resource.list(q=f"{search}", cx="b26b100e80bed59a7", searchType="image").execute()
+    url = result['items'][ran]['link']
+    embed = discord.Embed(title="Image from Google", url=url)
+    embed.set_image(url=url)
     await ctx.send(embed=embed)    
     
 @client.command()

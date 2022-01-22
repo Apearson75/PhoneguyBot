@@ -12,6 +12,8 @@ Flask = "^2.0.1"
 discord-py-slash-command = "^3.0.1"
 ssa-api-wrapper = "^0.6"
 discord-components = "^2.1.1"
+discord-buttons-plugin = "^0.1.2"
+google-api-python-client = "^2.36.0"
 
 [tool.poetry.dev-dependencies]
 

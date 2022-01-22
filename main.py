@@ -15,7 +15,9 @@ from discord_slash import SlashCommand, SlashContext
 from ssa_wrapper import ssa_twitter
 from alive import keep_alive
 import random
-from discord_components import Button, Select, SelectOption, ComponentsBot
+from discord_components import *
+from discord_buttons_plugin import *
+from googleapiclient.discovery import build
 #^ basic imports for other features of discord.py and python ^
 
 #Discord Config Stuff
@@ -24,6 +26,7 @@ intents.members = True
 intents.messages = True
 client = commands.Bot(command_prefix = '-', intents=intents) 
 slash = SlashCommand(client, sync_commands=True)
+buttons = ButtonsClient(client)
 
 
 #API KEYS
@@ -31,6 +34,7 @@ football_api = os.getenv("FOOTBALL")
 unsplash = os.getenv("UNSPLASH")
 api_football = os.getenv("API_FOOTBALL")
 webhook = os.getenv("Webhook")
+google_key = os.getenv("GOOGLE")
 idk_server = '877549922373742632'
 #your own prefix here
 
@@ -59,10 +63,12 @@ async def on_ready():
 @client.event
 async def on_guild_join(guild):
   print("The bot is in a new server!!")
+  user = client.get_user(813128377967575061)
   with open('commands.txt', 'r') as cmds:
      embed=discord.Embed(title="Thank you for adding me to you server. Here are a list of commands:",
      description=cmds.read(),color=0xc93bf5)
      await guild.text_channels[0].send(embed=embed)
+  await user.send(f'A new server has added this bot. I am in {str(len(client.guilds))} servers')   
 
 @client.event
 async def on_member_join(member):
@@ -261,6 +267,7 @@ async def slashaniquote(ctx):
 async def aniwink(ctx):
     outputwink = ani_wink()
     await ctx.send(outputwink)
+    print(ctx.author)
         
 @slash.slash(name="aniwink", description="shows a gif of an anime character winking")
 async def slashaniwink(ctx):
@@ -341,16 +348,12 @@ async def leagues(ctx):
 
 @client.command()
 async def image(ctx, *, search):
-    key = unsplash
-    url = requests.get(f'https://api.unsplash.com/photos/random?query={search}&orientation=landscape&client_id={key}')
-    json_data = json.loads(url.text)
-    image = json_data['urls']['regular']
-    unsplash_image = json_data['links']['html']
-    name = json_data['user']['first_name']
-    name_link = json_data['user']['links']['html']
-    embed = discord.Embed(title='Image from Unsplash', url=unsplash_image)
-    embed.set_image(url=image)
-    embed.add_field(name='Image By', value=f'{name} - {name_link}')
+    ran = random.randint(0, 9)
+    resource = build("customsearch", "v1", developerKey=google_key).cse()
+    result = resource.list(q=f"{search}", cx="b26b100e80bed59a7", searchType="image").execute()
+    url = result['items'][ran]['link']
+    embed = discord.Embed(title="Image from Google", url=url)
+    embed.set_image(url=url)
     await ctx.send(embed=embed)
 
 @slash.slash(name='image', description='Searches an image from Unsplash')
@@ -531,10 +534,25 @@ async def dm(ctx,*,text,member: discord.Member):
 
 @client.command()
 async def button(ctx):
-    await ctx.send("Buttons!", components=[Button(label="Button", custom_id="button1")])
-@client.event
-async def on_button_click(interaction):
-    await interaction.respond(content="Button Clicked")
+    eembed = discord.Embed(title="test")
+    await buttons.send(
+      content=None,
+      channel=ctx.channel.id,
+      embed = eembed,
+      components=[
+        ActionRow([
+          Button(
+            style = ButtonType().Primary,
+            label = "Test",
+            custom_id = "my_button"
+          )
+        ])
+      ]
+    )
+
+@buttons.click
+async def my_button(ctx):
+	await ctx.reply("Hello!")    
 
 @client.command()
 async def serverinfo(ctx):

@@ -409,12 +409,16 @@ async def ssatweets(ctx):
 
 @client.command()
 async def fmeme(ctx):
-    response = requests.get('https://meme-api.herokuapp.com/gimme/younestalksfootball')
+    subReddits = ['younestalksfootball', 'footballmemes', 'soccermemes']
+    randReddit = random.randint(0, 2)
+    randReddit = subReddits[randReddit]
+    response = requests.get(f'https://meme-api.herokuapp.com/gimme/{randReddit}')
     json_data = json.loads(response.text)
     r_title = json_data['title']
     r_img = json_data['url']
     r_postlink = json_data['postLink']
     embed = discord.Embed(title=r_title, url=r_postlink)
+    embed.add_field(name='SubReddit:', value=f"r/{randReddit}")
     embed.set_image(url=r_img)
     await ctx.send(embed=embed)
 
